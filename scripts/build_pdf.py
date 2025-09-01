@@ -16,8 +16,8 @@ def sh(cmd, cwd=None):
 def load_brand():
     with open(BRAND_FILE, "r", encoding="utf-8") as f:
         cfg = yaml.safe_load(f)
-    from datetime import datetime
-    year = str(datetime.utcnow().year)
+    from datetime import datetime, timezone
+    year = str(datetime.now(timezone.utc).year)
     cfg["footer_text"] = cfg.get("footer_text","").replace("{{year}}", year)
     return cfg
 

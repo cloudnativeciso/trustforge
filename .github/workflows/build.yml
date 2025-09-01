@@ -18,7 +18,8 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y pandoc \
             texlive-xetex texlive-latex-recommended texlive-latex-extra \
-            texlive-fonts-recommended fonts-dejavu
+            texlive-fonts-recommended texlive-fonts-extra \
+            fonts-dejavu
 
       - name: Render PDFs
         run: |
