@@ -1,0 +1,10 @@
+org_name: "Avalanche"
+org_domain: "downwithshinra.com"
+primary_color: "#1A73E8"   # Eisvogel maincolor
+accent_color:  "#0B57D0"
+footer_text: "© {{year}} Avalanche — Internal"
+logo: "brand/logo.jpg"     # drop your PNG here (approx 600–1200px wide)
+paper_size: "a4"           # a4 | letter
+include_toc: true
+number_sections: true
+pdf_engine: "xelatex"      # xelatex recommended for fonts/unicode

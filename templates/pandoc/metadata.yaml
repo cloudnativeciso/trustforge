@@ -1,0 +1,6 @@
+# Defaults that can be overridden by document front-matter or brand/config.yml
+title: "Untitled Policy"
+author: ["Security Team"]
+subject: "Policy"
+keywords: ["security","policy"]
+lang: "en-US"

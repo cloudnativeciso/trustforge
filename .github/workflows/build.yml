@@ -1,0 +1,32 @@
+name: policy-pdf
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # Install pandoc + TeX Live (Ubuntu)
+      - name: Install pandoc & TeX Live
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y pandoc \
+            texlive-xetex texlive-latex-recommended texlive-latex-extra \
+            texlive-fonts-recommended fonts-dejavu
+
+      - name: Render PDFs
+        run: |
+          python3 --version || sudo apt-get install -y python3 python3-yaml
+          python3 scripts/build_pdf.py
+
+      - name: Upload PDFs
+        uses: actions/upload-artifact@v4
+        with:
+          name: policies-pdf
+          path: out/pdf/*.pdf
