@@ -40,11 +40,10 @@ jobs:
         run: uv run mypy -p trustforge
 
       - name: Tests
-        run: uv run pytest
+        run: PYTHONPATH=src uv run pytest
 
-      # Smoke build HTML (skip TeX in PR builds)
       - name: HTML smoke build
-        run: uv run trustforge html policies/information-security-policy.md
+        run: PYTHONPATH=src uv run trustforge html policies/information-security-policy.md
 # PDF Verification
   pdf_release:
     if: startsWith(github.ref, 'refs/tags/')
