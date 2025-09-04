@@ -1,0 +1,72 @@
+\documentclass[11pt]{article}
+
+% Layout & graphics
+\usepackage[margin=PAGE_MARGINmm]{geometry}
+\usepackage{graphicx}
+
+% Fonts via XeLaTeX (Inter body, DM Sans headings)
+\usepackage{fontspec}
+\setmainfont{Inter}
+\setsansfont{DM Sans}
+\setmonofont{Fira Code}[Scale=MatchLowercase]
+
+% Colors + links
+\usepackage{xcolor}
+\definecolor{TFLink}{HTML}{LINK_COLOR_HTML}
+\definecolor{TFHead}{HTML}{HEADING_COLOR_HTML}
+\definecolor{TFText}{HTML}{TEXT_COLOR_HTML}
+\usepackage{hyperref}
+\hypersetup{
+  colorlinks=true,
+  linkcolor=TFLink,
+  urlcolor=TFLink,
+  linktoc=all,
+  pdfauthor={Cloud Native CISO},
+  pdftitle={TITLE},
+  pdfpagemode=UseOutlines,
+  bookmarksopen=true,
+  bookmarksopenlevel=2,
+  bookmarksnumbered=true
+}
+
+% Headings & spacing
+\usepackage{titlesec}
+\titleformat{\section}{\Large\bfseries\color{TFHead}\sffamily}{}{0pt}{}
+\titleformat{\subsection}{\large\bfseries\color{TFHead}\sffamily}{}{0pt}{}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{7pt}
+\setcounter{secnumdepth}{2}
+\setcounter{tocdepth}{2}
+
+% Pandoc compact list shim
+\providecommand{\tightlist}{\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
+\begin{document}
+% ---------------- Cover Page ----------------
+\thispagestyle{empty}
+\vspace*{6mm}
+{\color{TFHead}\Huge\bfseries\sffamily TITLE}\par
+SUBTITLE_BLOCK
+\vspace{3mm}
+{\color{TFText}\large Version VERSION \quad|\quad Owner OWNER \quad|\quad Last reviewed LAST_REVIEWED}\par
+\vspace{10mm}
+\noindent
+\IfFileExists{LOGO_PATH}{\includegraphics[height=LOGO_HEIGHT_MM mm]{LOGO_PATH}}{}
+\vfill
+FOOTER_BLOCK
+\newpage
+% --------------- End Cover ------------------
+
+% ---------------- TOC -----------------------
+{\sffamily\bfseries\color{TFHead}\Large Table of Contents}\par
+\vspace{6pt}
+\tableofcontents
+\newpage
+% --------------- End TOC --------------------
+
+% Body
+% BODY START
+__POLICY_BODY__
+% BODY END
+
+\end{document}

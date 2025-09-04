@@ -1,0 +1,6 @@
+from src.trustforge.common.theme import load_theme
+
+
+def test_tokens_load():
+    t = load_theme("themes/neutral.yaml")
+    assert t.brand.name == "Trustforge"

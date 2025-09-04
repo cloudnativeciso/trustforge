@@ -1,0 +1,3 @@
+@page { margin: 20mm; }
+h1, h2, h3 { page-break-after: avoid; }
+pre, blockquote, table { page-break-inside: avoid; }

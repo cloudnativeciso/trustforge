@@ -1,0 +1,8 @@
+from pathlib import Path
+
+from src.trustforge.pipeline.render_html import render_html
+
+
+def test_html_smoke(tmp_path: Path):
+    out = render_html(Path("policies/information-security-policy.md"))
+    assert out.exists()

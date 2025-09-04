@@ -1,0 +1,37 @@
+brand:
+  name: "Cloud Native CISO"
+  logo_path: "assets/logo.png"
+  logo_height_mm: 24   # tweak here
+
+color:
+  primary: "#6b445f"
+  primary_light: "#916b85"
+  primary_dark: "#3b2636"
+  secondary: "#dca23f"
+  accent: "#d65c3f"
+  text: "#403b36"
+  muted: "#5c5450"
+  border: "#d8ccc0"
+  background: "#fefaf6"
+
+typography:
+  font_body: "Inter"
+  font_heading: "DM Sans"
+  font_logo: "Satoshi, 'DM Sans', Inter, -apple-system, system-ui, sans-serif"
+  font_mono: "Fira Code"
+  scale: 1.0
+  line_height: 1.65
+
+layout:
+  page_margins_mm: 22
+  header: true
+  footer: false
+  watermark: ""
+
+pdf:
+  link_color: "#6b445f"
+  heading_color: "#3b2f2f"
+
+html:
+  max_width_px: 880
+  heading_weight: 700

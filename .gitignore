@@ -1,5 +1,17 @@
-/out/
+__pycache__/
+*.pyc
+.env
+.out/
+out/
+.uv/
+.venv/
+dist/
+build/
 .DS_Store
-*.log
-*.aux
-*.out
+
+# build artefacts
+src/*.egg-info/
+out/
+.venv/
+__pycache__/
+*.pyc

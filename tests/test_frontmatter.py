@@ -1,0 +1,10 @@
+from pathlib import Path
+
+from src.trustforge.common.md import parse_policy_markdown
+
+
+def test_frontmatter_parse():
+    text = Path("policies/information-security-policy.md").read_text(encoding="utf-8")
+    meta, body = parse_policy_markdown(text)
+    assert meta.title and meta.version and meta.owner
+    assert body.strip().startswith("#")

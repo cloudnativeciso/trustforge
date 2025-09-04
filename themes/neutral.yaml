@@ -1,0 +1,31 @@
+brand:
+  name: "Cloud Native CISO"
+  logo_path: ""   # add a local path later if you want
+
+color:
+  primary: "#2563eb"        # link/accent (CNCISO vibe)
+  text: "#111827"           # slate-900
+  muted: "#6b7280"          # slate-500/600
+  border: "#e5e7eb"         # slate-200
+  background: "#ffffff"
+
+typography:
+  font_body: "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Inter, 'Helvetica Neue', Arial, sans-serif"
+  font_heading: "ui-sans-serif, system-ui, Inter, 'Helvetica Neue', Arial, sans-serif"
+  font_mono: "ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', monospace"
+  scale: 1.0
+  line_height: 1.65
+
+layout:
+  page_margins_mm: 22
+  header: true
+  footer: false
+  watermark: ""
+
+pdf:
+  link_color: "#2563eb"
+  heading_color: "#111827"
+
+html:
+  max_width_px: 860
+  heading_weight: 750
