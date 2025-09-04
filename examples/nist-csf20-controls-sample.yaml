@@ -1,0 +1,26 @@
+# examples/nist-csf20-controls-sample.yaml
+# A small illustrative subset of NIST CSF 2.0 controls for reference.
+# NOTE: The `trustforge control-map nist-csf20` command does NOT read this file;
+# it uses the built-in catalog. This sample exists for inspection or custom pipelines.
+framework: "NIST CSF 2.0"
+controls:
+  - function: ID
+    category: GV
+    control_id: ID.GV-01
+    title: Governance Program
+    description: Establish and maintain organizational cybersecurity governance.
+  - function: PR
+    category: AC
+    control_id: PR.AC-01
+    title: Access Management
+    description: Enforce least privilege and define account lifecycle processes.
+  - function: PR
+    category: DS
+    control_id: PR.DS-03
+    title: Sensitive Data Protection
+    description: Protect sensitive data at rest and in transit.
+  - function: DE
+    category: AE
+    control_id: DE.AE-01
+    title: Anomalies & Events
+    description: Establish baselines and detect deviations indicative of incidents.

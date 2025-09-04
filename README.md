@@ -13,6 +13,8 @@ It supports export to **HTML**, **PDF (XeLaTeX)**, and **CSV indexes**, with the
   - **HTML** with theme-aligned typography and colors.
   - **CSV Index** of policies for tracking metadata across your repository.
 - **Custom theming system** (YAML-based) for brand colors, fonts, and layout tokens.
+- **NIST CSF 2.0 Control Map**: Generate CSV/HTML crosswalks of controls for readiness assessments.
+- **Risk Register**: Define risks in YAML/Markdown and export to CSV or PDF with scoring models.
 - **Pre-commit hooks** with Ruff + Mypy ensure style and type safety.
 - Simple **Makefile workflows** for install, lint, test, and build.
 
@@ -42,7 +44,7 @@ Additional dependencies:
 ### Generate PDF
 
 ```bash
-make pdf
+trustforge pdf  examples/policies/information-security-policy.md
 ```
 
 Produces a themed PDF at `out/<policy>.pdf`.
@@ -50,7 +52,7 @@ Produces a themed PDF at `out/<policy>.pdf`.
 ### Generate HTML
 
 ```bash
-make html
+trustforge html examples/policies/information-security-policy.md
 ```
 
 Produces a themed HTML file at `out/<policy>.html`.
@@ -58,10 +60,32 @@ Produces a themed HTML file at `out/<policy>.html`.
 ### Generate CSV Index
 
 ```bash
-make index
+trustforge index --out out/policies.csv
 ```
 
 Builds `out/policies.csv` with metadata from all Markdown policies.
+
+### Control Map (NIST CSF 2.0)
+
+```bash
+trustforge control-map nist-csf20 --out out/control_map.csv
+```
+
+Outputs a CSV with columns:
+`framework,function,category,control_id,title,description`.
+
+### Risk Register
+
+From YAML to CSV:
+
+```bash
+trustforge risk-export examples/risks.yaml --out out/risks.csv
+```
+
+CSV columns:
+`id,title,description,severity,likelihood,owner,status,treatment,target_date,control_refs`.
+
+`control_refs` are `;`-joined control IDs (e.g., `PR.AC-01;DE.AE-01`).
 
 ---
 

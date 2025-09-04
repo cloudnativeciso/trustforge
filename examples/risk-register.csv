@@ -1,0 +1,7 @@
+id,title,description,severity,likelihood,owner,status,treatment,target_date,control_refs
+R-001,Public S3 bucket exposure,Misconfigured S3 bucket may expose customer data.,High,Possible,CISO,Open,Mitigate,2025-10-31,PR.AC-01;DE.AE-01;PR.DS-03
+R-002,Model prompt injection,LLM-based agent could follow adversarial instructions and exfiltrate secrets.,High,Likely,Security Engineering,Mitigating,Mitigate,2025-11-15,ID.GV-01;PR.PT-02
+R-003,Excessive IAM privileges,Overly broad IAM roles may allow unintended production access.,Medium,Possible,Platform,Open,Reduce,2025-12-31,PR.AC-02
+R-004,Software supply-chain compromise,Malicious dependency or compromised GitHub token leads to code tampering.,High,Possible,Security Engineering,Open,Mitigate,2025-10-15,PR.DS-06;DE.AE-03;PR.PT-05
+R-005,GCP service account key exposure,Long-lived keys checked into a repo or leaked in logs.,High,Unlikely,Platform,Open,Avoid,2025-09-30,PR.AC-04;PR.DS-03
+R-006,Kubernetes cluster lateral movement,Insufficient network policies allow attacker to pivot between namespaces.,Medium,Possible,Platform,Open,Mitigate,2025-11-30,PR.PT-04;DE.AE-02

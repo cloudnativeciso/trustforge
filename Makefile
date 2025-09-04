@@ -5,7 +5,7 @@
 
 SHELL := /bin/zsh
 
-.PHONY: install lint test pdf html index all clean open-pdf open-html
+.PHONY: install lint test pdf html index all clean open-pdf open-html control-map risk-demo
 
 # Defaults
 POLICY ?= policies/information-security-policy.md
@@ -40,3 +40,9 @@ open-pdf:
 
 open-html:
 	open $(OUT)/$$(basename $(POLICY:.md=.html))
+
+control-map:
+	uv run trustforge control-map nist-csf20 --out out/control_map.csv
+
+risk-demo:
+	uv run trustforge risk-export examples/risks.yaml --out out/risks.csv

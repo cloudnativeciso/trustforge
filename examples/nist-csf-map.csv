@@ -1,0 +1,11 @@
+framework,function,category,control_id,title,description
+NIST CSF 2.0,ID,GV,ID.GV-01,Governance Program,"Establish and maintain cybersecurity governance, roles, and accountability."
+NIST CSF 2.0,PR,AC,PR.AC-01,Access Management,Enforce least privilege and define account lifecycle with approvals and reviews.
+NIST CSF 2.0,PR,AC,PR.AC-02,Privileged Access,Harden and monitor privileged roles; rotate credentials; just-in-time elevation.
+NIST CSF 2.0,PR,DS,PR.DS-03,Data Protection,Protect sensitive data at rest and in transit with strong encryption and KMS.
+NIST CSF 2.0,PR,PT,PR.PT-04,Network Segmentation,Restrict east-west traffic; implement zero-trust network policies for workloads.
+NIST CSF 2.0,PR,PT,PR.PT-05,Software Integrity,Verify artifacts with signing; secure CI/CD; scan dependencies and IaC.
+NIST CSF 2.0,DE,AE,DE.AE-01,Anomaly Detection,Establish baselines; detect deviations indicative of potential incidents.
+NIST CSF 2.0,DE,AE,DE.AE-02,Security Monitoring,"Collect and correlate logs, metrics, and events for threat detection."
+NIST CSF 2.0,RS,RP,RS.RP-01,Incident Response Plan,Maintain and test IR plans; define communications; conduct post-incident reviews.
+NIST CSF 2.0,RC,IM,RC.IM-01,Improvements,Implement corrective actions and track to closure; update controls and training.

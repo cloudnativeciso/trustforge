@@ -1,0 +1,36 @@
+# examples/risks.yaml
+# Minimal, ready-to-run sample risk register.
+# Run:
+#   trustforge risk-export examples/risks.yaml --out out/risks.csv
+- id: R-001
+  title: Public S3 bucket exposure
+  description: Misconfigured S3 bucket may expose customer data.
+  severity: High
+  likelihood: Possible
+  owner: CISO
+  status: Open
+  treatment: Mitigate
+  target_date: "2025-10-31"
+  control_refs: ["PR.AC-01", "DE.AE-01"]
+
+- id: R-002
+  title: Model prompt injection
+  description: LLM-based agent may follow adversarial instructions and exfiltrate secrets.
+  severity: High
+  likelihood: Likely
+  owner: Security Engineering
+  status: Mitigating
+  treatment: Mitigate
+  target_date: "2025-11-15"
+  control_refs: ["ID.GV-01", "PR.DS-03"]
+
+- id: R-003
+  title: Excessive IAM privileges
+  description: Broad IAM roles could enable unintended production access.
+  severity: Medium
+  likelihood: Possible
+  owner: Platform
+  status: Open
+  treatment: Reduce
+  target_date: "2025-12-31"
+  control_refs: ["PR.AC-02"]
