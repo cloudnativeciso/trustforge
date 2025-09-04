@@ -1,31 +1,30 @@
 brand:
-  name: "Cloud Native CISO"
-  logo_path: ""   # add a local path later if you want
-
+  name: "Trustforge"
+  logo_path: ""
+  logo_height_mm: 18
 color:
-  primary: "#2563eb"        # link/accent (CNCISO vibe)
-  text: "#111827"           # slate-900
-  muted: "#6b7280"          # slate-500/600
-  border: "#e5e7eb"         # slate-200
-  background: "#ffffff"
-
+  primary: "#222222"
+  text: "#222222"
+  muted: "#555555"
+  border: "#DDDDDD"
+  background: "#FFFFFF"
+  primary_light: "#444444"
+  primary_dark: "#111111"
 typography:
-  font_body: "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Inter, 'Helvetica Neue', Arial, sans-serif"
-  font_heading: "ui-sans-serif, system-ui, Inter, 'Helvetica Neue', Arial, sans-serif"
-  font_mono: "ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', monospace"
+  font_body: "Inter"
+  font_heading: "Inter"
+  font_logo: "Inter"
+  font_mono: "Menlo"
   scale: 1.0
-  line_height: 1.65
-
+  line_height: 1.5
 layout:
-  page_margins_mm: 22
+  page_margins_mm: 20
   header: true
-  footer: false
+  footer: true
   watermark: ""
-
 pdf:
-  link_color: "#2563eb"
-  heading_color: "#111827"
-
+  link_color: "#1A73E8"
+  heading_color: "#000000"
 html:
-  max_width_px: 860
-  heading_weight: 750
+  max_width_px: 800
+  heading_weight: 700
