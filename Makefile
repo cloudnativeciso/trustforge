@@ -15,7 +15,7 @@ install:
 	uv venv && uv pip install -e '.[dev]'
 
 lint:
-	uv run ruff check . && uv run mypy .
+	uv run ruff check . && uv run mypy src
 
 test:
 	PYTHONPATH=src uv run pytest
