@@ -1,0 +1,253 @@
+/* -----------------------------------------------------------------------------
+   Trustforge Policy HTML – Neutral / Polished Hero Theme
+   - Centered hero header with large logo (if provided)
+   - Clean, modern typography and spacing
+   - No gradients; subtle borders and shadows only
+   - Responsive and print-friendly (pairs with print.css)
+----------------------------------------------------------------------------- */
+
+/* Base / reset-ish */
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html, body { height: 100%; }
+
+body {
+  margin: 0;
+  color: var(--tf-text, #222);
+  background: var(--tf-bg, #fff);
+  font-family: var(--tf-font-body, Inter), -apple-system, system-ui, Segoe UI, Roboto, Arial, sans-serif;
+  line-height: 1.65;
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Shared width container */
+.wrap,
+.mast-inner {
+  width: 100%;
+  max-width: var(--tf-max-width, 880px);
+  margin-inline: auto;
+  padding-inline: 24px;
+}
+
+/* -----------------------------------------------------------------------------
+   HERO MASTHEAD
+----------------------------------------------------------------------------- */
+
+.mast {
+  background: var(--tf-bg, #fff);
+  border-bottom: 1px solid var(--tf-border, #e8e8e8);
+}
+
+.mast-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+
+  padding-block: clamp(28px, 5vw, 56px);
+  gap: 14px;
+}
+
+/* Brand (logo only) */
+.brand {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+}
+
+.brand-logo img {
+  display: block;
+  height: clamp(56px, 9vw, 88px); /* hero-sized, responsive */
+  width: auto;
+  filter: drop-shadow(0 1px 2px rgba(0,0,0,.07));
+}
+
+/* Document meta */
+.doc-meta {
+  max-width: 56rem; /* keeps long titles comfortable when centered */
+}
+
+.doc-title {
+  margin: 0;
+  margin-top: 4px;
+  font-family: var(--tf-font-heading, Inter), system-ui, sans-serif;
+  font-weight: var(--tf-heading-weight, 700);
+  font-size: clamp(1.9rem, 1.3rem + 2.2vw, 2.8rem);
+  letter-spacing: -0.01em;
+  color: var(--tf-heading, #111);
+}
+
+.doc-subtitle {
+  margin-top: 8px;
+  color: var(--tf-muted, #666);
+  font-family: var(--tf-font-heading, Inter), system-ui, sans-serif;
+  font-weight: 500;
+  font-size: clamp(1.05rem, 0.95rem + 0.5vw, 1.2rem);
+}
+
+.meta-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.meta-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border: 1px solid var(--tf-border, #e6e6e6);
+  border-radius: 999px;
+  font-size: 0.88rem;
+  color: var(--tf-muted, #666);
+  background: #fff;
+}
+
+.pill-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--tf-primary, #5a47a0);
+  display: inline-block;
+}
+
+/* -----------------------------------------------------------------------------
+   CONTENT CARD
+----------------------------------------------------------------------------- */
+
+.card.content {
+  background: #fff;
+  border: 1px solid var(--tf-border, #e8e8e8);
+  border-radius: 14px;
+  padding: clamp(18px, 2.4vw, 26px);
+  margin: clamp(18px, 3.2vw, 36px) auto 40px;
+  box-shadow:
+    0 0.5px 1.5px rgba(0,0,0,.05),
+    0 12px 28px rgba(0,0,0,.06);
+}
+
+.prose { max-width: 82ch; margin-inline: auto; }
+
+/* -----------------------------------------------------------------------------
+   TYPOGRAPHY: Headings & text
+----------------------------------------------------------------------------- */
+
+.prose h1, .prose h2, .prose h3, .prose h4 {
+  font-family: var(--tf-font-heading, Inter), system-ui, sans-serif;
+  font-weight: var(--tf-heading-weight, 700);
+  line-height: 1.25;
+  margin: 1.5em 0 0.6em;
+  color: var(--tf-heading, #111);
+}
+.prose h1 { font-size: clamp(1.6rem, 1.1rem + 1.8vw, 2.2rem); }
+.prose h2 { font-size: clamp(1.3rem, 1.05rem + 0.9vw, 1.7rem); }
+.prose h3 { font-size: 1.12rem; }
+.prose h4 { font-size: 1rem; }
+
+.prose p,
+.prose ul,
+.prose ol,
+.prose blockquote,
+.prose pre,
+.prose table {
+  margin: 0.9em 0;
+}
+
+/* Links */
+.prose a {
+  color: var(--tf-primary, #5a47a0);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(90, 71, 160, 0.45); /* subtle underline */
+  transition: opacity .15s ease;
+}
+.prose a:hover { opacity: .9; }
+
+/* Lists */
+.prose ul { padding-left: 1.2rem; }
+.prose ol { padding-left: 1.3rem; }
+.prose li { margin: 0.32em 0; }
+
+/* Blockquotes */
+.prose blockquote {
+  padding: .95rem 1.05rem;
+  border-left: 3px solid var(--tf-primary, #5a47a0);
+  background: #faf9ff; /* soft, neutral off-white with a hint of color */
+  color: #2a2a2a;
+  border-radius: 10px;
+}
+
+/* Inline code */
+.prose code {
+  font-family: var(--tf-font-mono, ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace);
+  font-size: .92em;
+  background: #f6f6f8;
+  border: 1px solid #ececf1;
+  border-radius: 6px;
+  padding: 0.12em 0.38em;
+}
+
+/* Code blocks */
+.prose pre {
+  background: #0b0c10;
+  color: #e7e9ee;
+  border-radius: 12px;
+  padding: 16px 18px;
+  overflow: auto;
+  border: 1px solid #0b0c10;
+}
+
+.prose pre code {
+  background: transparent;
+  border: 0;
+  padding: 0;
+  color: inherit;
+  font-size: 0.94em;
+}
+
+/* Tables */
+.prose table {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid var(--tf-border, #e8e8e8);
+  border-radius: 12px;
+  overflow: hidden;
+}
+.prose thead th {
+  background: #f7f7f9;
+  color: var(--tf-text, #222);
+  text-align: left;
+  padding: .65rem .8rem;
+  font-weight: 600;
+  border-bottom: 1px solid var(--tf-border, #e8e8e8);
+}
+.prose td {
+  padding: .58rem .8rem;
+  border-top: 1px solid var(--tf-border, #e8e8e8);
+}
+
+/* Footer */
+footer.site {
+  border-top: 1px solid var(--tf-border, #e8e8e8);
+  color: var(--tf-muted, #666);
+  font-size: .95rem;
+  padding: 18px 0 28px;
+  background: var(--tf-bg, #fff);
+}
+.foot-inner { text-align: center; }
+
+/* -----------------------------------------------------------------------------
+   RESPONSIVE TWEAKS
+----------------------------------------------------------------------------- */
+
+@media (max-width: 640px) {
+  .card.content { padding: 18px 16px; }
+  .brand-logo img { height: 52px; }
+  .doc-title { font-size: clamp(1.6rem, 1.2rem + 2.6vw, 2.2rem); }
+}

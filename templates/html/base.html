@@ -2,89 +2,88 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <title>{{ title }} · {{ brand_name }}</title>
+  <title>{{ meta.title }} · {{ tokens.brand.name }}</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <!-- Self-hosted fonts -->
-  <link rel="preload" as="font" href="assets/fonts/dm-sans/DMSans-Regular.woff2" type="font/woff2" crossorigin>
-  <link rel="preload" as="font" href="assets/fonts/dm-sans/DMSans-Bold.woff2" type="font/woff2" crossorigin>
-  <link rel="preload" as="font" href="assets/fonts/inter/Inter-Regular.woff2" type="font/woff2" crossorigin>
-  <link rel="preload" as="font" href="assets/fonts/satoshi/Satoshi-Bold.woff2" type="font/woff2" crossorigin>
-  <style>
-    @font-face{ font-family:"DM Sans"; src:url("assets/fonts/dm-sans/DMSans-Regular.woff2") format("woff2"); font-weight:400; font-style:normal; font-display:swap; }
-    @font-face{ font-family:"DM Sans"; src:url("assets/fonts/dm-sans/DMSans-Medium.woff2") format("woff2"); font-weight:500; font-style:normal; font-display:swap; }
-    @font-face{ font-family:"DM Sans"; src:url("assets/fonts/dm-sans/DMSans-Bold.woff2") format("woff2"); font-weight:700; font-style:normal; font-display:swap; }
-    @font-face{ font-family:"Inter"; src:url("assets/fonts/inter/Inter-Regular.woff2") format("woff2"); font-weight:400; font-style:normal; font-display:swap; }
-    @font-face{ font-family:"Inter"; src:url("assets/fonts/inter/Inter-Bold.woff2") format("woff2"); font-weight:700; font-style:normal; font-display:swap; }
-    @font-face{ font-family:"Satoshi"; src:url("assets/fonts/satoshi/Satoshi-Regular.woff2") format("woff2"); font-weight:400; font-style:normal; font-display:swap; }
-    @font-face{ font-family:"Satoshi"; src:url("assets/fonts/satoshi/Satoshi-Bold.woff2") format("woff2"); font-weight:700; font-style:normal; font-display:swap; }
-    @font-face{ font-family:"Fira Code"; src:url("assets/fonts/fira-code/FiraCode-Regular.woff2") format("woff2"); font-weight:400; font-style:normal; font-display:swap; }
-    @font-face{ font-family:"Fira Code"; src:url("assets/fonts/fira-code/FiraCode-Bold.woff2") format("woff2"); font-weight:700; font-style:normal; font-display:swap; }
+  <!--
+    We store CSS custom properties in a meta tag (not in <style> or style="...")
+    so editors don't try to lint Jinja as CSS.
+  -->
+  <meta name="tf-vars" content="{% for k, v in css_vars.items() %}{{ k }}={{ v }};{% endfor %}">
 
-    :root{
-      --tf-color-text: {{ css_vars.color_text }};
-      --tf-color-muted: {{ css_vars.color_muted }};
-      --tf-color-border: {{ css_vars.color_border }};
-      --tf-max-width: {{ css_vars.max_width }};
-      --tf-line: {{ css_vars.line_height }};
-      --tf-bg: {{ background }};
-      --tf-primary: {{ primary }};
-      --tf-primary-dark: {{ primary_dark }};
-    }
+  <!-- Main styles -->
+  <link rel="stylesheet" href="assets/policy.css" />
+  <!-- Print tuning -->
+  <link rel="stylesheet" href="assets/print.css" media="print" />
 
-    *{ box-sizing:border-box; }
-    body{
-      margin:0; padding:0; background: var(--tf-bg);
-      color:var(--tf-color-text); line-height: var(--tf-line);
-      font-family: Inter, -apple-system, system-ui, Segoe UI, Roboto, Arial, sans-serif;
-    }
-
-    .cover{ background: var(--tf-bg); border-bottom: 1px solid var(--tf-color-border); padding: 2.75rem 1.25rem 1.75rem; }
-    .wrap{ max-width: var(--tf-max-width); margin: 0 auto; }
-    .brand{ display:flex; align-items:center; gap:.75rem; margin-bottom: .2rem; }
-    .brand img{ height: 44px; }
-    .wordmark{ font-family: "Satoshi","DM Sans",Inter,-apple-system,system-ui,sans-serif; font-weight:700; letter-spacing:.01em; }
-
-    h1,h2,h3{ font-family: "DM Sans", Inter, -apple-system, system-ui, sans-serif; margin: 1.1em 0 .4em; }
-    h1{ font-size: clamp(2.1rem, 2.2vw + 1rem, 2.8rem); letter-spacing:-0.01em; color: var(--tf-primary-dark); }
-    h2{ font-size: 1.35rem; }
-    h3{ font-size: 1.1rem; }
-
-    .subtitle{ font-family: "DM Sans",Inter,sans-serif; color: var(--tf-color-muted); font-size: 1.15rem; margin-top: .25rem; }
-    .meta{ color: var(--tf-color-muted); font-size: .95rem; margin-top:.5rem; }
-
-    .content{ max-width: var(--tf-max-width); margin: 2rem auto; padding: 0 1.25rem; }
-    article{ background:#fff; border:1px solid var(--tf-color-border); border-radius:12px; padding:1.5rem 1.6rem; }
-    article h2{ color: var(--tf-primary-dark); }
-
-    p,li{ margin:.55rem 0; }
-    blockquote{ margin:1rem 0; padding:.85rem 1rem; border-left:3px solid var(--tf-primary); color:var(--tf-color-muted); background:#fff7f0; }
-    pre{ background:#fbfbfb; border:1px solid var(--tf-color-border); padding:.9rem; overflow:auto; border-radius:8px; font-family:"Fira Code",ui-monospace,Menlo,Consolas,monospace; }
-    table{ border-collapse: collapse; width:100%; margin:1rem 0; }
-    th,td{ border:1px solid var(--tf-color-border); padding:.55rem .65rem; text-align:left; }
-    th{ background:#faf7f2; }
-
-    footer.coverfoot{ margin-top: .9rem; color: var(--tf-color-muted); font-size:.9rem; }
-  </style>
+  <script>
+    // Apply theme variables from the meta tag to :root at runtime.
+    (function () {
+      var meta = document.querySelector('meta[name="tf-vars"]');
+      if (!meta) return;
+      var raw = meta.getAttribute('content') || '';
+      // Expect pairs like: --tf-primary=#6b445f;--tf-text=#403b36;...
+      raw.split(';').forEach(function (pair) {
+        if (!pair) return;
+        var idx = pair.indexOf('=');
+        if (idx === -1) return;
+        var key = pair.slice(0, idx).trim();
+        var val = pair.slice(idx + 1).trim();
+        if (key && val) document.documentElement.style.setProperty(key, val);
+      });
+    })();
+  </script>
 </head>
 <body>
-  <section class="cover">
-    <div class="wrap">
-      <div class="brand">
-        {% if brand_logo %}<img src="{{ brand_logo }}" alt="{{ brand_name }} logo" />{% endif %}
-        <div class="wordmark">{{ brand_name }}</div>
+  <!-- Masthead -->
+  <header class="mast">
+    <div class="mast-inner">
+      {% if tokens.brand.logo_path %}
+        <div class="brand">
+          <span class="brand-logo">
+            <img
+              src="assets/{{ tokens.brand.logo_path.split('/')[-1] }}"
+              alt="{{ tokens.brand.name }} logo"
+              loading="lazy"
+            />
+          </span>
+        </div>
+      {% endif %}
+      <div class="doc-meta">
+        <h1 class="doc-title">{{ meta.title }}</h1>
+        {% if meta.subtitle %}
+          <div class="doc-subtitle">{{ meta.subtitle }}</div>
+        {% endif %}
+        <div class="meta-row" aria-label="document metadata">
+          {% if meta.version %}
+            <span class="meta-pill"><span class="pill-dot"></span> v{{ meta.version }}</span>
+          {% endif %}
+          {% if meta.owner %}
+            <span class="meta-pill">Owner: {{ meta.owner }}</span>
+          {% endif %}
+          {% if meta.last_reviewed %}
+            <span class="meta-pill">Reviewed: {{ meta.last_reviewed }}</span>
+          {% endif %}
+        </div>
       </div>
-      <h1>{{ title }}</h1>
-      {% if subtitle %}<div class="subtitle">{{ subtitle }}</div>{% endif %}
-      <p class="meta">Version {{ version }} · Owner: {{ owner }} · Last reviewed: {{ last_reviewed }}</p>
-      {% if footer_text %}<footer class="coverfoot">{{ footer_text }}</footer>{% endif %}
     </div>
-  </section>
+  </header>
 
-  <div class="content">
-    <article>
-      {{ body_html | safe }}
-    </article>
-  </div>
+  <!-- Content card -->
+  <main class="wrap">
+    <section class="card content">
+      <article class="prose">
+        {{ body | safe }}
+      </article>
+    </section>
+  </main>
+
+  {% if meta.footer %}
+    <footer class="site">
+      <div class="wrap foot-inner">
+        {{ meta.footer }}
+      </div>
+    </footer>
+  {% endif %}
 </body>
 </html>

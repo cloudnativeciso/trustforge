@@ -1,0 +1,15 @@
+/* Minimal print overrides to keep PDFs clean */
+@media print {
+  header.mast, footer.site {
+    border: none;
+    box-shadow: none;
+  }
+  .card {
+    border: none;
+    box-shadow: none;
+  }
+  a { text-decoration: underline; }
+  .wrap { padding: 0; }
+  main { padding: 0; }
+  .prose h2 { border: none; padding-top: 0; }
+}

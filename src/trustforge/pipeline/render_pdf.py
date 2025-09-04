@@ -27,6 +27,36 @@ def _check_binary(name: str) -> None:
         raise MissingDependencyError(name)
 
 
+def _inject_minted_preamble(latex: str) -> str:
+    """
+    Insert a small minted setup block before \\begin{document} if not already present.
+    We avoid touching the template file directly.
+    """
+    if "\\usepackage{minted}" in latex:
+        return latex  # already present
+
+    preamble = r"""
+% --- Trustforge injected minted setup ---
+\usepackage[cache=false]{minted} % requires -shell-escape and pygmentize
+\setminted{
+  fontsize=\small,
+  breaklines=true,
+  breakanywhere=true,
+  autogobble=true,
+  tabsize=2,
+}
+% ----------------------------------------
+""".strip("\n")
+
+    marker = r"\begin{document}"
+    idx = latex.find(marker)
+    if idx == -1:
+        # No begin document? template is malformed.
+        raise TemplateError("<inline>", "LaTeX template missing \\begin{document}")
+    # Insert just before \begin{document}
+    return latex[:idx] + preamble + "\n" + latex[idx:]
+
+
 def render_pdf(policy_path: Path) -> Path:
     """
     Render a policy Markdown file to themed PDF via XeLaTeX.
@@ -62,14 +92,23 @@ def render_pdf(policy_path: Path) -> Path:
     body_tex = md_to_latex_body(body_md, tokens=tokens, meta=meta)
     latex = latex.replace("BODY", body_tex)
 
+    # Inject minted preamble (only if not already in the template)
+    latex = _inject_minted_preamble(latex)
+
     # Write .tex
     tex_path = out_dir / f"{policy_path.stem}.tex"
     tex_path.write_text(latex, encoding="utf-8")
 
-    # Compile with XeLaTeX
+    # Compile with XeLaTeX (+ shell-escape for minted/pygmentize)
     try:
         subprocess.run(
-            ["xelatex", "-interaction=nonstopmode", "-halt-on-error", tex_path.name],
+            [
+                "xelatex",
+                "-interaction=nonstopmode",
+                "-halt-on-error",
+                "-shell-escape",
+                tex_path.name,
+            ],
             cwd=str(out_dir),
             check=True,
         )
