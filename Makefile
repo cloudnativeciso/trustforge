@@ -18,7 +18,7 @@ lint:
 	uv run ruff check . && uv run mypy .
 
 test:
-	uv run pytest -q
+	PYTHONPATH=src uv run pytest
 
 pdf:
 	uv run trustforge pdf $(POLICY)
